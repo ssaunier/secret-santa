@@ -1,13 +1,13 @@
 'use strict'
 
 angular.module('secretSantaApp')
-  .controller 'RecipientCtrl',  ($scope, recipientStorage) ->
-    $scope.recipients = recipientStorage.get()
+  .controller 'RecipientCtrl',  ($scope, RecipientStorage) ->
+    $scope.recipients = RecipientStorage.get()
     $scope.newRecipient = ''
 
     $scope.$watch 'recipients', ((newValue, oldValue) ->
       if newValue != oldValue
-        recipientStorage.put($scope.recipients)
+        RecipientStorage.put($scope.recipients)
       ), true
 
     $scope.addRecipient = () ->

@@ -1,14 +1,14 @@
 'use strict'
 
-describe 'Service: Recipientstorage', () ->
+describe 'Service: RecipientStorage', () ->
 
   # load the service's module
   beforeEach module 'secretSantaApp'
 
   # instantiate service
-  Recipientstorage = {}
-  beforeEach inject (_Recipientstorage_) ->
-    Recipientstorage = _Recipientstorage_
+  RecipientStorage = {}
+  beforeEach inject (_RecipientStorage_) ->
+    RecipientStorage = _RecipientStorage_
 
   it 'should do something', () ->
-    expect(!!Recipientstorage).toBe true
+    expect(!!RecipientStorage).toBe true

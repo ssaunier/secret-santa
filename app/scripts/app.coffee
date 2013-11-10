@@ -1,10 +1,7 @@
 'use strict'
 
 angular.module('secretSantaApp', [
-  'ngCookies',
-  'ngResource',
-  'ngSanitize',
-  'ngRoute'
+  "ngRoute"
 ])
   .config ($routeProvider) ->
     $routeProvider

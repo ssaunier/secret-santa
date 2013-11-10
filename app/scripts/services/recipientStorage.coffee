@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('secretSantaApp')
-  .factory 'recipientStorage', () ->
+  .factory 'RecipientStorage', () ->
     STORAGE_ID = 'secret-santa-recipients';
 
     {
