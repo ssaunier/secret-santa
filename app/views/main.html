@@ -11,6 +11,9 @@
 
   <form ng-submit="addRecipient()">
     <input placeholder="Add a new gift recipient" ng-model="newRecipient" autofocus>
+    <span class="help-inline" ng-show="isDuplicate(newRecipient)">
+      {{ newRecipient }} already exists in the list
+    </span>
   </form>
 
 </body>
