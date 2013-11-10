@@ -1,1 +1,15 @@
 <h1>Secret Santa</h1>
+
+<div ng-controller="RecipientCtrl">
+
+  <ul>
+    <li ng-repeat="recipient in recipients">
+      {{ recipient }}
+    </li>
+  </ul>
+
+  <form  ng-submit="addRecipient()">
+    <input placeholder="Add a new gift recipient" ng-model="newRecipient" autofocus>
+  </form>
+
+</body>
