@@ -5,10 +5,11 @@
   <ul>
     <li ng-repeat="recipient in recipients">
       {{ recipient }}
+      <span ng-click="removeRecipient()">&times;</span>
     </li>
   </ul>
 
-  <form  ng-submit="addRecipient()">
+  <form ng-submit="addRecipient()">
     <input placeholder="Add a new gift recipient" ng-model="newRecipient" autofocus>
   </form>
 

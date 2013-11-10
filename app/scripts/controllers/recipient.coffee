@@ -15,3 +15,6 @@ angular.module('secretSantaApp')
       return unless newRecipient.length
       $scope.recipients.push newRecipient
       $scope.newRecipient = ''
+
+    $scope.removeRecipient = (recipient) ->
+      $scope.recipients.splice($scope.recipients.indexOf(recipient), 1)
