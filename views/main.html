@@ -2,10 +2,12 @@
 
 <div ng-controller="RecipientCtrl">
 
+  <h2>{{ recipients.length }} gift recipients</h2>
+
   <ul>
-    <li ng-repeat="recipient in recipients">
-      {{ recipient }}
-      <span ng-click="removeRecipient(recipient)">&times;</span>
+    <li ng-repeat="recipient in recipients track by $id($index)">
+      {{ recipient.name }}
+      <span class="destroy" ng-click="removeRecipient(recipient)">&times;</span>
     </li>
   </ul>
 
@@ -16,4 +18,45 @@
     </span>
   </form>
 
+</div>
+
+<div ng-controller="ConstraintCtrl">
+
+  <h2>Constraints</h2>
+
+  <ul>
+    <li ng-repeat="recipient in recipients track by $id($index)" ng-show="recipient.constraints.length">
+      {{ recipient.name }} should not give a gift to
+      {{ recipient.constraints.join(', ') }}
+      <span class="destroy" ng-click="removeConstraints(recipient)">&times;</span>
+    </li>
+  </ul>
+
+  <form ng-submit="addConstraintWithOpposite()">
+    <select ng-model="newConstraintFrom">
+      <option ng-repeat="recipient in recipients track by $id($index)">{{ recipient.name }}</option>
+    </select>
+    should not give a gift to
+    <select ng-model="newConstraintTo">
+      <option ng-repeat="recipient in recipients track by $id($index)">{{ recipient.name }}</option>
+    </select>
+    <label for="opposite">
+      <input id="opposite" type="checkbox" ng-model="opposite">
+      and the opposite
+    </label>
+    <input type="submit" value="Add">
+  </form>
+
+</div>
+
+
+<div ng-controller="TombolaCtrl">
+  <h2>Results</h2>
+  <button ng-click="runSecretSanta()">Run Secret Santa!</button>
+
+  <ul>
+    <li ng-repeat="drawnRecipient in drawnRecipients">
+      <strong>{{ drawnRecipient.name }}</strong> will offer a gift to <em>{{ drawnRecipient.to }}</em>
+    </li>
+  </ul>
 </div>
