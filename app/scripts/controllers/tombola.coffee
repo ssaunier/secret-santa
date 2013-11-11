@@ -1,9 +1,12 @@
 'use strict'
 
 angular.module('secretSantaApp')
-  .controller 'TombolaCtrl', ($scope, RecipientStorage) ->
-    recipients = RecipientStorage.get()
+  .controller 'TombolaCtrl', ($scope, $rootScope, RecipientStorage) ->
+    $scope.recipients = RecipientStorage.get()
     $scope.drawnRecipients = []
+
+    $rootScope.$on 'recipients:changed', () ->
+      $scope.recipients = RecipientStorage.get()
 
     rollIndex = (size) ->
       Math.floor(Math.random() * size)
@@ -14,16 +17,15 @@ angular.module('secretSantaApp')
         [a[i], a[j]] = [a[j], a[i]]
       a
 
-    draw = (recipients) ->
-      people = shuffle recipients.slice(0)
+    draw = () ->
+      people = shuffle $scope.recipients.slice(0)
       count = people.length
       redraw = false
-      for recipient in recipients
+      for recipient in people
         recipient.possibleTos = RecipientStorage.possibleTos(recipient, people)
 
       assigendRecipients = []
-      for recipient in people
-        from = recipient
+      for from in people
         possibleTos = RecipientStorage.possibleTos(from, people)
         for assignedRecipient in assigendRecipients
           index = possibleTos.indexOf(assignedRecipient)
@@ -37,7 +39,7 @@ angular.module('secretSantaApp')
         from.to = to
         assigendRecipients.push to
 
-      if redraw then draw(recipients) else people
+      if redraw then draw() else people
 
     $scope.runSecretSanta = () ->
-      $scope.drawnRecipients = draw(recipients)
+      $scope.drawnRecipients = draw()

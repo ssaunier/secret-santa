@@ -55,7 +55,7 @@
   <button ng-click="runSecretSanta()">Run Secret Santa!</button>
 
   <ul>
-    <li ng-repeat="drawnRecipient in drawnRecipients">
+    <li ng-repeat="drawnRecipient in drawnRecipients | orderBy:'name'">
       <strong>{{ drawnRecipient.name }}</strong> will offer a gift to <em>{{ drawnRecipient.to }}</em>
     </li>
   </ul>
